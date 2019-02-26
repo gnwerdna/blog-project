@@ -8,7 +8,8 @@ import classes from './Blog.module.css';
 // import NewPost from '../../components/NewPost/NewPost'
 class Blog extends React.Component {
     state = {
-        posts : []
+        posts : [],
+        selectedPostId: null
     }
     componentDidMount() {
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -27,12 +28,18 @@ class Blog extends React.Component {
             })
     }
 
+    selectedPostHandler = (id) => {
+        this.setState({
+            selectedPostId: id
+        })
+    }
     render() {
         const posts = this.state.posts.map(post => {
             return <Post 
-                        title={post.title} 
-                        key={post.id}
-                        author={post.author}/>
+                title={post.title} 
+                key={post.id}
+                author={post.author}
+                clicked={() => this.selectedPostHandler(post.id)}/>
         })
         return (
             <div>
@@ -40,7 +47,7 @@ class Blog extends React.Component {
                     {posts}
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost id={this.state.selectedPostId}/>
                 </section>
                 <section>
                     <NewPost/>

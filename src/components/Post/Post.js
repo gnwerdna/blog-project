@@ -3,8 +3,8 @@ import classes from './Post.module.css'
 const post = (props) => {
     return (
         <article className={classes.Post}>
-            <h1>Title</h1>
-            <div className={classes.Author}>Author</div>
+            <h1>{props.title}</h1>
+            <div className={classes.Author}>{props.author}</div>
         </article>
     )
 }

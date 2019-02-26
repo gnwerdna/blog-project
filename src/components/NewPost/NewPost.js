@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './NewPost.module.css'
+import Axios from 'axios';
 
 class NewPost extends React.Component {
     state = {
@@ -7,7 +8,18 @@ class NewPost extends React.Component {
         content: '',
         author: 'Max'
     }
+    postDataHandler = () => {
+        const data = {
+            title: this.state.title,
+            content: this.state.title,
+            author: this.state.title
+        }
 
+        Axios.post('https://jsonplaceholder.typicode.com/posts/', data)
+            .then(res => {
+                console.log(res);
+            })
+    }
     render () {
         return (
             <div className={classes.NewPost}>
@@ -31,7 +43,7 @@ class NewPost extends React.Component {
                     <option value="Max">Max</option>
                     <option value="Manu">Manu</option>
                 </select>  
-                <button>Add Post</button> 
+                <button onClick={this.postDataHandler}>Add Post</button> 
             </div>
         )
     }

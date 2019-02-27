@@ -19,7 +19,8 @@
 }
 
 .Blog a:hover,
-.Blog a:active {
+.Blog a:active,
+.Blog a.active {
     cursor: pointer;
     color: #fa923f;
 }

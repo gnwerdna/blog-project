@@ -4,7 +4,7 @@ import Post from './../../../components/Post/Post';
 import classes from './Posts.module.css';
 class Posts extends Component {
     state = {
-        posts : []
+        posts : [],
     }
 
     selectedPostHandler = (id) => {
@@ -31,16 +31,16 @@ class Posts extends Component {
     }
 
     render() {
-        let posts = <p style={{textAlign: 'center'}}> Something went wrong!</p>
-        if(!this.state.error) {
-            this.state.posts.map(post => {
+        // let posts = <p style={{textAlign: 'center'}}> Something went wrong!</p>
+        // if(!this.state.error) {
+            let posts = this.state.posts.map(post => {
                 return <Post 
                     title={post.title} 
                     key={post.id}
                     author={post.author}
                     clicked={() => this.selectedPostHandler(post.id)}/>
             })
-        }
+        // }
         return(
             <section className={classes.Posts}>
                 {posts}

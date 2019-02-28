@@ -3,19 +3,19 @@ import classes from './Blog.module.css';
 import Posts from './Posts/Posts';
 import FullPost from './FullPost/FullPost'
 import NewPost from './NewPost/NewPost';
-import {Route, NavLink} from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import './Blog.css'
 class Blog extends React.Component {
 
-    render() {        
+    render() {
         return (
             <div>
                 <header className={[classes.Blog, "blog"].join(' ')}>
                     <nav>
                         <ul>
                             <li>
-                                <NavLink 
-                                    to="/" 
+                                <NavLink
+                                    to="/"
                                     exact
                                     activeClassName="my-active"
                                     activeStyle={{
@@ -34,9 +34,11 @@ class Blog extends React.Component {
                     </nav>
                 </header>
                 {/* <Route path="/" exact render={() => <h1>Home</h1>}/> */}
-                <Route path="/" exact component={Posts}/>
-                <Route path="/new-post" exact component={NewPost}/>
-                <Route path="/:id" exact component={FullPost}/>
+                <Route path="/" exact component={Posts} />
+                <Switch>
+                    <Route path="/new-post" exact component={NewPost} />
+                    <Route path="/:id" exact component={FullPost} />
+                </Switch>
             </div>
         )
     }
